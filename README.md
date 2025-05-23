@@ -21,9 +21,10 @@ Profissional autodidata e apaixonado por dados, com quase 7 anos de experiência
 ✅ **Distribuído**: Apache Spark, PySpark
 
 ## 🔹 Linguagens & Ferramentas
-✅ Python | Spark | PySpark  
+✅ Python | Spark | PySpark | Scala
 ✅ GitHub | GitLab | Bitbucket  
-✅ Metodologias Ágeis: Scrum (Jira), Kanban
+✅ Terraform
+
 
 ---
 
@@ -63,6 +64,9 @@ Profissional autodidata e apaixonado por dados, com quase 7 anos de experiência
 
   <!-- Grafana -->
   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/grafana/grafana-original.svg" alt="Grafana" width="40"/>
+  <!-- Terraform -->
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/terraform/terraform-original.svg" alt="Terraform" width="40"/>
+
 </p>
 <!-- SQL Server -->
 

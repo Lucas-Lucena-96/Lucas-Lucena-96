@@ -1,73 +1,93 @@
-# 🇧🇷 Engenheiro de Dados | Arquitetura de Dados & Big Data | Cloud & ETL/ELT
+Impacta Streaming – Aula Prática Kafka (Data Integration)
+Curso: MBA em Data Engineering
+Disciplina: Integrated Data Platforms
+Aluno: Lucas S L Candido
+RA: 2501934
 
-Profissional autodidata e apaixonado por dados, com quase 7 anos de experiência no desenvolvimento de pipelines escaláveis e integração de diferentes fontes em arquiteturas Data Lake/Lakehouse.
+📋 Sobre o Projeto
+Este repositório contém o projeto da aula prática de Data Integration com Apache Kafka, utilizando Docker, JupyterLab e Kafka UI para simular um cenário de streaming de dados de uma "rede social".
 
-💡 Especializado na construção, otimização e automação de processos ETL/ELT em ambientes Cloud, garantindo alta performance, escalabilidade e governança dos dados.
+🎯 Objetivo
+Demonstrar, de ponta a ponta:
 
----
+✅ Geração de eventos (producer)
 
-## 🔹 Cloud & Big Data
-✅ **Azure**: Databricks, Data Factory (ADF), Synapse, Blob Storage Gen2  
-✅ **GCP**: BigQuery, Cloud Functions, Cloud Run, Cloud Tasks, Dataproc, Pub/Sub, GCS
+✅ Ingestão e transporte via Kafka (cluster com 2 brokers)
 
-## 🔹 Bancos de Dados & Modelagem
-✅ **SQL Avançado**: PL/SQL, T-SQL, PostgreSQL, MySQL  
-✅ **NoSQL**: MongoDB  
-✅ **Modelagem de Dados**: Relacional, Dimensional, Data Lake, Lakehouse
+✅ Consumo dos eventos (consumer)
 
-## 🔹 Processamento & Orquestração de Dados
-✅ **ETL/ELT**: Pipelines com camadas bronze, silver e gold  
-✅ **Orquestração**: Apache Airflow, Azure Data Factory (ADF)  
-✅ **Distribuído**: Apache Spark, PySpark
+✅ Persistência dos dados em arquivos CSV para análise posterior
 
-## 🔹 Linguagens & Ferramentas
-✅ Python | Spark | PySpark | Scala
-✅ GitHub | GitLab | Bitbucket  
-✅ Terraform
+🏗️ Arquitetura da Solução
+✅ Zookeeper: Coordenação do cluster Kafka
 
+✅ Kafka 1 e Kafka 2: Dois brokers para simular ambiente com mais de um servidor
 
----
+✅ Kafka UI: Interface web para inspecionar tópicos, partições e mensagens
 
-🎯 **Foco em entregar soluções escaláveis e resolver desafios complexos com autonomia, compromisso e inovação.**
+✅ JupyterLab: Ambiente para executar os notebooks de producer e consumer
 
-🔍 Sempre em busca de novas tecnologias e melhores práticas para transformar dados em **insights estratégicos**!
+🔄 Fluxo Resumido
+Producer.ipynb gera mensagens simulando eventos de usuários em uma rede social
 
----
+As mensagens são publicadas em um tópico Kafka
 
-## 🚀 Tecnologias & Ferramentas
+Consumer.ipynb consome as mensagens do tópico
 
-<p align="left">
-  <!-- Python -->
-  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python" width="40"/>
+As mensagens consumidas são gravadas periodicamente em arquivos CSV na pasta data
 
-  <!-- PostgreSQL -->
-  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" alt="PostgreSQL" width="40"/>
+📁 Estrutura de Pastas
+text
+impacta_streaming/
+├─ docker-compose.yml
+└─ notebooks/
+   ├─ producer.ipynb
+   ├─ consumer.ipynb
+   ├─ run_jupyterlab.sh
+   ├─ requirements.txt
+├─ data/                # Arquivos CSV gerados pelo consumer
+└─ imagens/             # Evidências de execução (prints e vídeo)
+As evidências de execução, incluindo prints e vídeo, estão disponíveis na pasta imagens.
 
-  <!-- Cassandra -->
-  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cassandra/cassandra-original.svg" alt="Cassandra" width="40"/>
+🚀 Como Executar
+1. Clone o repositório:
+bash
+git clone https://github.com/seu-usuario/impacta_streaming.git
+cd impacta_streaming
+2. Suba o ambiente Docker:
+bash
+docker-compose up -d
+3. Instale as dependências Python:
+bash
+pip install -r notebooks/requirements.txt
+4. Acesse o JupyterLab:
+O JupyterLab estará disponível em http://localhost:8888 (verifique o token no log do container ou use o script run_jupyterlab.sh).
 
-  <!-- MySQL -->
-  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="MySQL" width="40"/>
-  <img src="https://upload.wikimedia.org/wikipedia/commons/8/87/Sql_data_base_with_logo.png" alt="SQL Server" width="40"/>
+5. Execute os notebooks:
+producer.ipynb: Gera e envia eventos para o Kafka
 
-  <!-- Oracle -->
-  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/oracle/oracle-original.svg" alt="Oracle" width="40"/>
+consumer.ipynb: Consome eventos do Kafka e salva em CSV na pasta data
 
-  <!-- Apache Spark -->
-  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/apachespark/apachespark-original.svg" alt="Apache Spark" width="40"/>
+6. Acesse o Kafka UI:
+Interface web disponível em http://localhost:8080 para monitorar tópicos e mensagens.
 
-  <!-- Google Cloud -->
-  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/googlecloud/googlecloud-original.svg" alt="Google Cloud" width="40"/>
+⚡ Observações de Performance
+Escrita em CSV otimizada com buffer e encoding utf-8
 
-  <!-- GitHub -->
-  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" width="40"/>
+Decodificação e escrita de mensagens em lote para melhor eficiência
 
-  <!-- Grafana -->
-  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/grafana/grafana-original.svg" alt="Grafana" width="40"/>
-  <!-- Terraform -->
-  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/terraform/terraform-original.svg" alt="Terraform" width="40"/>
+Prints reduzidos para evitar overhead desnecessário
 
-</p>
-<!-- SQL Server -->
+Producer faz flush periódico para garantir envio eficiente
 
+O consumer cria automaticamente a pasta data para armazenar os arquivos CSV, mantendo o projeto organizado
 
+📋 Requisitos
+Docker e Docker Compose
+
+Python 3.8+
+
+Navegador web para acessar JupyterLab e Kafka UI
+
+📄 Licença
+Uso acadêmico.
